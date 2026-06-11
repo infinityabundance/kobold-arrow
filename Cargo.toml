@@ -2,13 +2,13 @@
 name = "kobold-arrow"
 version = "0.1.0"
 edition = "2021"
-description = "Apache Arrow projection of decoded fixed-record COBOL data."
+description = "Map COBOL fixed-record layouts to equivalent Apache Arrow schemas."
 authors = ["infinityabundance"]
 license = "Apache-2.0"
 repository = "https://github.com/infinityabundance/kobold-arrow"
 readme = "README.md"
-publish = false  # empty scaffold; flip to publishable once the implementation lands
 
 [dependencies]
-# Dependency rule: kobold-* MAY depend on gnucobol-rs; gnucobol-rs MUST NOT depend on kobold-*.
-# Activate when the implementation is extracted, e.g.: gnucobol-rs = "0.7"
+# Light by design: emit an Arrow schema as data; do NOT link the heavy `arrow` crate.
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
